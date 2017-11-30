@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -36,7 +34,6 @@ import com.zhuye.hougong.R;
 import com.zhuye.hougong.bean.LoginCode;
 import com.zhuye.hougong.bean.MessageEvent;
 import com.zhuye.hougong.contants.Contants;
-import com.zhuye.hougong.utils.CommentUtils;
 import com.zhuye.hougong.utils.SpUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -144,24 +141,24 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        EMClient.getInstance().login(phone, pass, new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                CommentUtils.toast(LoginActivity.this,"登录成功");
-                //finish();
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                CommentUtils.toast(LoginActivity.this,s);
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-
-            }
-        });
-        //loginFormserver();
+//        EMClient.getInstance().login(phone, pass, new EMCallBack() {
+//            @Override
+//            public void onSuccess() {
+//                CommentUtils.toast(LoginActivity.this,"登录成功");
+//                //finish();
+//            }
+//
+//            @Override
+//            public void onError(int i, String s) {
+//                CommentUtils.toast(LoginActivity.this,s);
+//            }
+//
+//            @Override
+//            public void onProgress(int i, String s) {
+//
+//            }
+//        });
+        loginFormserver();
     }
 
     private void loginFormserver() {

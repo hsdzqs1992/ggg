@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -57,11 +58,11 @@ public class FindFragment extends BaseFragment {
 
 
     }
-
     @Override
     protected void initData() {
         super.initData();
         //初始化关注数据
+        initZhuiXinData();
         initFindData(1,"201");
 
 
@@ -69,25 +70,62 @@ public class FindFragment extends BaseFragment {
 
 
 
+
    }
+
+    private void initZhuiXinData() {
+        OkGo.<String>post(Contants.dynamiclists)
+                .params("token", SpUtils.getString(getActivity(),"token",""))
+                .params("type","1")
+                .params("page",1)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.i("---",response.body());
+                        try {
+                            Gson gson = new Gson();
+                            DongTaiBean dongTaiBean = gson.fromJson(response.body(),DongTaiBean.class);
+                            if(dongTaiBean!=null&&finAdapter!=null){
+
+                                finAdapter.setFindZhuiXinData(dongTaiBean);
+                            }
+                        } catch (JsonSyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Log.i("---",response.body());
+
+                    }
+                });
+
+    }
 
     private void initFindData(int type ,String city_code) {
         OkGo.<String>post(Contants.new_dynamic)
                 .params("token", SpUtils.getString(getActivity(),"token",""))
                 .params("page",1)
-                .params("type",city_code)
-                .params("city_code","100")
+                .params("type",type)
+                .params("city_code",city_code)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         Log.i("llllll",response.body());
                         Gson gson = new Gson();
-                        DongTaiBean dongTaiBean = gson.fromJson(response.body(),DongTaiBean.class);
-                        if(finAdapter!=null){
-                            finAdapter.setFindGuanZhuData(dongTaiBean);
-                            finAdapter.setFindGuanZhuData(dongTaiBean);
-                            finAdapter.setFindZhuiXinData(dongTaiBean);
-                           // finAdapter.notifyDataSetChanged();
+                        try {
+                            DongTaiBean dongTaiBean = gson.fromJson(response.body(),DongTaiBean.class);
+                            if(finAdapter!=null){
+                                //finAdapter.setFindTongChengData(dongTaiBean);
+                                if(dongTaiBean!=null&&finAdapter!=null){
+                                    finAdapter.setFindGuanZhuData(dongTaiBean);
+                                }
+                               // finAdapter.notifyDataSetChanged();
+                            }
+                        } catch (JsonSyntaxException e) {
+                            e.printStackTrace();
                         }
 
 
@@ -110,14 +148,6 @@ public class FindFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), FaBuActivity.class));
             }
         });
-    }
-
-    private void initToolBar() {
-
-       // myToolbar.homeLeftIcon.setText(R.string.huangguan);
-        //myToolbar.homeLeftIcon.setTypeface(((MainActivity)getActivity()).typeface);
-        //myToolbar.homeRightIcon.setText(R.string.loudou);
-       // myToolbar.homeRightIcon.setTypeface(((MainActivity)getActivity()).typeface);
     }
 
     @Override

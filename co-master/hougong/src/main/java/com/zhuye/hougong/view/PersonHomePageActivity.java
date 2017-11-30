@@ -20,6 +20,7 @@ import com.zhuye.hougong.bean.PersonDetailBean;
 import com.zhuye.hougong.contants.Contants;
 import com.zhuye.hougong.http.MyCallback;
 import com.zhuye.hougong.utils.SpUtils;
+import com.zhuye.hougong.weidgt.RoundedCornerImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +32,7 @@ public class PersonHomePageActivity extends AppCompatActivity {
     @BindView(R.id.person_home_back)
     ImageView personHomeBack;
     @BindView(R.id.person_home_touxiang)
-    ImageView personHomeTouxiang;
+    RoundedCornerImageView personHomeTouxiang;
     @BindView(R.id.person_home_name)
     TextView personHomeName;
     @BindView(R.id.person_home_id)
@@ -106,7 +107,7 @@ public class PersonHomePageActivity extends AppCompatActivity {
 
     PersonDetailBean person;
     private void initData() {
-        OkGo.<String>post(Contants.personcenter)
+        OkGo.<String>post(Contants.communication)
                 .params("uid",uid)
                 .params("token", SpUtils.getString(PersonHomePageActivity.this,"token",""))
                 .execute(new MyCallback() {
@@ -129,6 +130,29 @@ public class PersonHomePageActivity extends AppCompatActivity {
 
                     }
                 });
+//        OkGo.<String>post(Contants.personcenter)
+//                .params("uid",uid)
+//                .params("token", SpUtils.getString(PersonHomePageActivity.this,"token",""))
+//                .execute(new MyCallback() {
+//                    @Override
+//                    protected void doFailue() {
+//
+//                    }
+//
+//                    @Override
+//                    protected void excuess(Response<String> response) {
+//                        String i = response.body();
+//                        Gson gson = new Gson();
+//                        person= gson.fromJson(response.body(),PersonDetailBean.class);
+//                        Log.i("-----",i);
+//                        Glide.with(PersonHomePageActivity.this).load(Contants.BASE_URL+person.getData().getFace()).into(personHomeTouxiang);
+//                        personHomeName.setText(person.getData().getNickname());
+//                        personHomeId.setText(person.getData().getUid());
+//                        personHomeAge.setText(person.getData().getAge());
+//                        personHomeDizhi.setText(person.getData().getCity());
+//
+//                    }
+//                });
     }
 
 

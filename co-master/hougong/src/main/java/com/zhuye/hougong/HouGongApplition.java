@@ -3,6 +3,7 @@ package com.zhuye.hougong;
 import android.app.Application;
 import android.support.multidex.MultiDex;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
@@ -36,6 +37,7 @@ public class HouGongApplition extends Application {
         EMClient.getInstance().init(this, options);
         EMClient.getInstance().setDebugMode(true);
         Modle.getInstance().init(this);
+        Fresco.initialize(this);
 
     }
 

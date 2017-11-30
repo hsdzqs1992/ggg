@@ -19,7 +19,6 @@ import com.zhuye.hougong.adapter.find.FindGuanZhuAdapter;
 import com.zhuye.hougong.adapter.find.FindTongChengAdapter;
 import com.zhuye.hougong.adapter.find.FindZuiXinAdapter;
 import com.zhuye.hougong.bean.DongTaiBean;
-import com.zhuye.hougong.bean.HomeBanner;
 import com.zhuye.hougong.utils.DensityUtil;
 import com.zhuye.hougong.view.PingLunActivity;
 
@@ -37,8 +36,6 @@ public class FindPagerAdapter2 extends PagerAdapter {
     private List<String> titles = new ArrayList<>();
     List<FindBaseAdapter> mAdapters = new ArrayList<>(3);
 
-
-    HomeBanner homeBanner;
 
     public FindPagerAdapter2(Context con) {
         conn = con;
@@ -58,14 +55,14 @@ public class FindPagerAdapter2 extends PagerAdapter {
     public void setFindGuanZhuData(DongTaiBean homeRecycleBean){
         findGuanZhuData = homeRecycleBean;
         //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
-        mAdapters.get(0).addData(homeRecycleBean.getData());
+        mAdapters.get(1).addData(homeRecycleBean.getData());
     }
 
     DongTaiBean findZhuiXinData;
     public void setFindZhuiXinData(DongTaiBean homeRecycleBean){
         findZhuiXinData = homeRecycleBean;
         //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
-        mAdapters.get(1).addData(homeRecycleBean.getData());
+        mAdapters.get(0).addData(homeRecycleBean.getData());
     }
 
     DongTaiBean findTongChengData;
@@ -125,12 +122,27 @@ public class FindPagerAdapter2 extends PagerAdapter {
 
         mAdapters.get(0).setOnItemClickListener(new BaseHolder.OnItemClickListener() {
             @Override
-            public void OnItemClick(View view, int position) {
+            public void OnItemClick(View view, final int position) {
                // CommentUtils.toast(conn,"点击最新了");
                 view.findViewById(R.id.find_zuixin_pinglun).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        conn.startActivity(new Intent(conn, PingLunActivity.class));
+                        Intent intent = new Intent(conn, PingLunActivity.class);
+                        intent.putExtra("dynamic_id",findZhuiXinData.getData().get(position).getDynamic_id());
+                        conn.startActivity(intent);
+                    }
+                });
+
+
+
+
+                view.findViewById(R.id.find_zuixin_dianzan).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //点赞
+
+
+
                     }
                 });
 

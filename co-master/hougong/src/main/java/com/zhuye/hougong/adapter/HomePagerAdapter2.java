@@ -274,6 +274,7 @@ public class HomePagerAdapter2 extends PagerAdapter {
 
     private void initTuiJianAdapter(View view, final int position) {
 
+        //进入评论
         view.findViewById(R.id.home_tuijian_item_touxiang).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -282,6 +283,7 @@ public class HomePagerAdapter2 extends PagerAdapter {
                 conn.startActivity(intent);
             }
         });
+
         view.findViewById(R.id.home_tuijian_item_zhuboguanzhu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {

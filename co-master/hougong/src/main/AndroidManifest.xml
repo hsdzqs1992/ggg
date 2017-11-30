@@ -109,7 +109,8 @@
         </receiver>
 
         <activity android:name=".view.BangDingYinHangActivity" />
-        <activity android:name=".view.ShenQingActivity"></activity>
+        <activity android:name=".view.ShenQingActivity" />
+        <activity android:name=".view.ShenQing2Activity"></activity>
     </application>
 
 </manifest>

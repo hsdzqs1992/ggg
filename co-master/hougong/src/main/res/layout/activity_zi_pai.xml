@@ -7,11 +7,31 @@
     android:orientation="vertical"
     tools:context="com.zhuye.hougong.view.ZiPaiActivity">
 
-    <com.zhuye.hougong.weidgt.MyToolBar2
-        android:id="@+id/shouzhiyijilv_toolbar"
+    <RelativeLayout
+        android:background="@color/tab_blue_bg"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.zhuye.hougong.weidgt.MyToolBar2>
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/mywalot_back"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_marginBottom="5dp"
+           android:layout_centerInParent="true"
+            android:text="自拍认证"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:id="@+id/mywalot_qianbao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:padding="20dp"
@@ -21,14 +41,19 @@
 
 
         <TextView
-            android:textSize="20sp"
+
+            android:textColor="#666"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:text="温馨提示"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
+
+            android:textColor="#999"
+            android:layout_marginTop="14dp"
+            android:textSize="14sp"
             android:text="1.认证照片需本人正面全脸露出照\n2.本照片仅用于认证"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -45,11 +70,14 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_marginBottom="34dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/man"
+                android:layout_width="130dp"
+                android:layout_height="130dp" />
             <TextView
+                android:textColor="#999"
+                android:layout_marginTop="14dp"
                 android:layout_gravity="center"
                 android:text="(请模仿图片动作，否则不会通过认证。)"
                 android:layout_width="wrap_content"
@@ -57,6 +85,11 @@
         </LinearLayout>
 
         <Button
+            android:background="#cccccc"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
             android:id="@+id/zipai_kaiqi"
             android:clickable="false"
             android:layout_marginBottom="30dp"

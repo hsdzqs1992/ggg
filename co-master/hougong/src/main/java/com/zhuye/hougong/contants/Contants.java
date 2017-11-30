@@ -114,4 +114,7 @@ public class Contants {
 
     //历史搜索记录
     public static final String history_select= BASE_URL+"/index.php/home/hall/history_select";
+
+    //交流页面
+    public static final String communication= BASE_URL+"/index.php/home/hall/communication";
 }
